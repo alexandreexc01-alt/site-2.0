@@ -1,0 +1,3 @@
+- [x] Página de vendas ULTRA PRO
+- [ ] Capturas de tela reais (aguardando cliente)
+- [ ] Links de compra e WhatsApp (aguardando cliente, em src/config/links.ts)
