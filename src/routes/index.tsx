@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Megaphone, Smartphone, MessageSquareReply, Filter, CircleDot, Users, Flame, BarChart3, MapPin,
-  Bot, Check, MessageCircle, ImageIcon, ShieldCheck,
+  Bot, Check, MessageCircle, ImageIcon, ShieldCheck, Zap, Settings2, Rocket, Play, Home, Headphones,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LINKS } from "@/config/links";
+import robot from "@/assets/robot.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,23 +27,33 @@ const waHref = LINKS.whatsapp || "#contato";
 const ext = (h: string) => (h.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
 
 const features = [
-  { icon: Megaphone, t: "Gerenciamento de campanhas", d: "Crie, organize e acompanhe suas campanhas em um só lugar." },
-  { icon: Smartphone, t: "Múltiplas contas e chips", d: "Distribua os envios entre várias contas e chips." },
-  { icon: MessageSquareReply, t: "Respostas automáticas", d: "Configure respostas para agilizar o atendimento." },
-  { icon: Filter, t: "Filtros e organização de números", d: "Filtre e organize suas listas de contatos." },
-  { icon: CircleDot, t: "Publicação de status", d: "Publique status diretamente pelo software." },
-  { icon: Users, t: "Captura e gestão de grupos", d: "Capture e gerencie grupos com praticidade." },
-  { icon: Flame, t: "Aquecimento de contas", d: "Recurso de aquecimento para suas contas." },
-  { icon: BarChart3, t: "Relatórios de campanhas", d: "Acompanhe os resultados de cada campanha." },
-  { icon: MapPin, t: "Extração Google / Google Maps", d: "Extraia dados de empresas do Google e Google Maps." },
+  { icon: Megaphone, t: "Gerenciamento de Campanhas", d: "Crie, organize e acompanhe seus disparos." },
+  { icon: Smartphone, t: "Múltiplas Contas e Chips", d: "Distribua envios entre várias contas." },
+  { icon: MessageSquareReply, t: "Respostas Automáticas", d: "Agilize o atendimento aos seus clientes." },
+  { icon: Filter, t: "Filtro de Números", d: "Filtre e organize suas listas." },
+  { icon: CircleDot, t: "Publicador de Status", d: "Publique status pelo software." },
+  { icon: Users, t: "Capturador de Grupos", d: "Capture e gerencie grupos." },
+  { icon: Flame, t: "Aquecedor de Contas", d: "Aqueça suas contas com o software." },
+  { icon: BarChart3, t: "Relatórios de Campanhas", d: "Acompanhe resultados e métricas." },
+  { icon: MapPin, t: "Extrator Google / Google Maps", d: "Extraia dados de empresas." },
+  { icon: Bot, t: "Atendimento com IA", d: "Inteligência artificial no WhatsApp." },
+];
+
+const gallery = ["Painel Geral", "Campanhas", "Respostas Automáticas", "Filtro de Números", "Publicador de Status", "Capturador de Grupos", "Aquecedor de Contas", "Relatórios de Campanhas", "Extrator do Google Maps", "Atendimento com IA"];
+
+const steps = [
+  { icon: Smartphone, t: "Conecte suas contas", d: "Adicione as contas e chips que vai usar." },
+  { icon: Settings2, t: "Configure suas estratégias", d: "Crie campanhas, respostas e filtros." },
+  { icon: Rocket, t: "Comece a vender mais", d: "Automatize e acompanhe os resultados." },
 ];
 
 const faqs = [
-  { q: "O que é o ULTRA PRO?", a: "É um software para gerenciar campanhas e atendimento no WhatsApp, com envio por múltiplas contas e chips, respostas automáticas, organização de números, publicação de status, gestão de grupos, aquecimento de contas, relatórios e extração de dados do Google / Google Maps." },
-  { q: "Como funciona o pagamento?", a: "O plano é anual: R$ 150,00 por ano, sem mensalidade. O valor normal é R$ 450,00, uma economia de R$ 300,00." },
+  { q: "O que é o ULTRA PRO?", a: "Um software para gerenciar campanhas e atendimento no WhatsApp: múltiplas contas e chips, respostas automáticas, filtros de números, status, grupos, aquecimento de contas, relatórios, extração do Google / Google Maps e atendimento com IA." },
+  { q: "Qual a forma de pagamento?", a: "Plano anual de R$ 150,00 por ano, sem mensalidade. O valor normal é R$ 450,00 — economia de R$ 300,00." },
   { q: "Tem mensalidade?", a: "Não. Você paga uma vez por ano." },
-  { q: "Como faço para contratar?", a: "Clique em “Quero aproveitar a promoção”. Se tiver dúvidas, fale com a equipe pelo WhatsApp." },
-  { q: "Posso enviar mensagens para qualquer número?", a: "As campanhas devem ser destinadas a contatos que autorizaram o recebimento, respeitando as regras do WhatsApp." },
+  { q: "Como faço para contratar?", a: "Clique em “Quero aproveitar a promoção”. Dúvidas? Fale com a equipe pelo WhatsApp." },
+  { q: "Posso enviar para qualquer número?", a: "As campanhas devem ser destinadas a contatos que autorizaram o recebimento, conforme as regras do WhatsApp." },
+  { q: "Como recebo suporte?", a: "Fale com nossa equipe pelo botão de WhatsApp nesta página." },
 ];
 
 function Cta({ className = "" }: { className?: string }) {
@@ -53,74 +64,150 @@ function Cta({ className = "" }: { className?: string }) {
   );
 }
 
+function Logo() {
+  return (
+    <span className="flex items-center gap-2">
+      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand"><Bot className="h-6 w-6" aria-hidden /></span>
+      <span className="leading-none">
+        <span className="font-display text-2xl font-extrabold">ULTRA <span className="text-accent">PRO</span></span>
+        <span className="block text-xs opacity-70">Automação para WhatsApp</span>
+      </span>
+    </span>
+  );
+}
+
+function SectionTitle({ title, sub }: { title: string; sub?: string }) {
+  return (
+    <div className="text-center">
+      <div className="flex items-center justify-center gap-4">
+        <span className="hidden h-0.5 w-16 bg-accent sm:block" />
+        <h2 className="text-3xl font-bold text-secondary-foreground md:text-4xl">{title}</h2>
+        <span className="hidden h-0.5 w-16 bg-accent sm:block" />
+      </div>
+      {sub && <p className="mt-2 text-muted-foreground">{sub}</p>}
+    </div>
+  );
+}
+
+function Mockup() {
+  return (
+    <div className="relative rounded-2xl border-4 border-deep-foreground/30 bg-card p-0 shadow-glow md:-rotate-2" aria-hidden>
+      <div className="rounded-t-xl bg-brand px-4 py-2 text-sm font-semibold text-primary-foreground">ULTRA PRO</div>
+      <div className="grid grid-cols-5 gap-2 bg-primary/90 px-3 py-3 text-primary-foreground">
+        {features.map(({ icon: Icon, t }) => (
+          <div key={t} className="flex flex-col items-center gap-1 text-center text-[9px] leading-tight"><Icon className="h-4 w-4" />{t.split(" ")[0]}</div>
+        ))}
+      </div>
+      <div className="space-y-2 p-4">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="flex items-center gap-3 rounded-lg border border-accent/50 p-2">
+            <MessageCircle className="h-5 w-5 text-accent" />
+            <div className="h-2 flex-1 rounded bg-muted" />
+            <div className="h-2 w-10 rounded bg-accent/60" />
+          </div>
+        ))}
+      </div>
+      <div className="absolute -bottom-8 -right-6 flex h-24 w-24 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-cta">
+        <MessageCircle className="h-12 w-12" />
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   return (
     <main className="min-h-screen">
       <header className="bg-hero text-deep-foreground">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-          <span className="font-display text-xl font-extrabold tracking-tight">ULTRA <span className="text-accent">PRO</span></span>
-          <div className="hidden gap-6 text-sm opacity-80 md:flex">
-            <a href="#funcionalidades" className="hover:opacity-100">Funcionalidades</a>
-            <a href="#ia" className="hover:opacity-100">IA</a>
-            <a href="#oferta" className="hover:opacity-100">Oferta</a>
-            <a href="#faq" className="hover:opacity-100">Dúvidas</a>
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
+          <Logo />
+          <div className="hidden items-center gap-7 text-sm lg:flex">
+            <a href="#inicio" className="flex items-center gap-1 hover:text-accent"><Home className="h-4 w-4" aria-hidden />Início</a>
+            <a href="#funcionalidades" className="hover:text-accent">Funcionalidades</a>
+            <a href="#oferta" className="hover:text-accent">Planos</a>
+            <a href="#faq" className="hover:text-accent">FAQ</a>
+            <a href="#contato" className="hover:text-accent">Contato</a>
           </div>
-          <Button asChild variant="glass" size="sm" className="rounded-full"><a href={waHref} {...ext(waHref)}>Fale conosco</a></Button>
+          <Button asChild variant="cta" size="sm" className="rounded-full"><a href={waHref} {...ext(waHref)}><MessageCircle aria-hidden />Falar no WhatsApp</a></Button>
         </nav>
-        <section className="mx-auto max-w-6xl px-5 pb-24 pt-14 text-center md:pt-24">
-          <span className="inline-block rounded-full border border-accent/40 bg-accent/10 px-4 py-1 text-sm font-semibold text-accent">Oferta anual · sem mensalidade</span>
-          <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">
-            Suas campanhas de WhatsApp em <span className="text-accent">um só lugar</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg opacity-80">
-            Gerencie campanhas, use várias contas e chips, automatize respostas e atenda com inteligência artificial — tudo com o ULTRA PRO.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-3">
-            <Cta />
-            <p className="text-sm opacity-70">De <s>R$ 450,00</s> por <strong className="text-accent">R$ 150,00/ano</strong></p>
+        <section id="inicio" className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-10 lg:grid-cols-2">
+          <div>
+            <span className="inline-block rounded-full bg-accent px-4 py-1 text-sm font-bold text-accent-foreground">10 ferramentas em um só software</span>
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] md:text-6xl">
+              Venda mais no <span className="block text-accent md:text-7xl">WhatsApp</span> no piloto automático
+            </h1>
+            <p className="mt-6 max-w-lg text-lg opacity-85">Dispare campanhas, responda clientes, aqueça contas e capture contatos — tudo pelo <strong>ULTRA PRO</strong>.</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Cta />
+              <Button asChild variant="glass" size="lg" className="h-14 rounded-full px-6"><a href="#demonstracao"><Play aria-hidden />Ver demonstração</a></Button>
+            </div>
+            <div className="mt-10 grid max-w-lg grid-cols-2 gap-4 text-sm sm:grid-cols-4">
+              {[[Zap, "Mais produtividade"], [BarChart3, "Relatórios de campanhas"], [ShieldCheck, "Sem mensalidade"], [Headphones, "Equipe no WhatsApp"]].map(([I, l]) => {
+                const Icon = I as typeof Zap;
+                return <div key={l as string} className="flex items-center gap-2 opacity-90"><Icon className="h-5 w-5 shrink-0 text-accent" aria-hidden />{l as string}</div>;
+              })}
+            </div>
           </div>
+          <Mockup />
         </section>
       </header>
 
-      <section id="funcionalidades" className="mx-auto max-w-6xl px-5 py-20">
-        <h2 className="text-center text-3xl font-bold md:text-4xl">Funcionalidades</h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-muted-foreground">Ferramentas para organizar e escalar sua comunicação.</p>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section id="funcionalidades" className="mx-auto max-w-7xl px-5 py-20">
+        <SectionTitle title="Conheça cada ferramenta" sub="Tudo o que você precisa para automatizar seu WhatsApp." />
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {features.map(({ icon: Icon, t, d }) => (
-            <div key={t} className="rounded-2xl border bg-card p-6 transition hover:-translate-y-1 hover:shadow-glow">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-primary-foreground"><Icon className="h-6 w-6" aria-hidden /></div>
-              <h3 className="mt-4 text-lg font-semibold">{t}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+            <div key={t} className="rounded-2xl border bg-card p-5 text-center transition hover:-translate-y-1 hover:shadow-glow">
+              <Icon className="mx-auto h-8 w-8 text-primary" aria-hidden />
+              <h3 className="mt-3 text-sm font-bold md:text-base">{t}</h3>
+              <p className="mt-1 text-xs text-muted-foreground md:text-sm">{d}</p>
             </div>
           ))}
         </div>
         <p className="mt-8 flex items-center justify-center gap-2 text-center text-sm text-muted-foreground">
-          <ShieldCheck className="h-4 w-4 text-primary" aria-hidden />
+          <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden />
           Campanhas destinadas a contatos que autorizaram o recebimento, conforme as regras do WhatsApp.
         </p>
       </section>
 
+      <section className="bg-secondary py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <SectionTitle title="Como funciona?" sub="Em poucos passos você começa a usar o ULTRA PRO." />
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {steps.map(({ icon: Icon, t, d }, i) => (
+              <div key={t} className="flex items-start gap-4">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand text-primary-foreground shadow-glow"><Icon className="h-8 w-8" aria-hidden /></div>
+                <div>
+                  <h3 className="flex items-center gap-2 font-bold"><span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">{i + 1}</span>{t}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="ia" className="bg-deep text-deep-foreground">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-2">
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest text-accent">Inteligência artificial</span>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">Atendimento por IA no WhatsApp</h2>
             <p className="mt-4 opacity-80">Conte com inteligência artificial para atender seus contatos pelo WhatsApp e ganhar agilidade no dia a dia.</p>
           </div>
-          <div className="flex justify-center">
-            <div className="flex h-44 w-44 items-center justify-center rounded-full bg-brand shadow-glow"><Bot className="h-20 w-20" aria-hidden /></div>
-          </div>
+          <img src={robot} alt="Mascote robô do ULTRA PRO" width={816} height={816} loading="lazy" className="mx-auto w-56 md:w-72" />
         </div>
       </section>
 
-      <section id="demonstracao" className="mx-auto max-w-6xl px-5 py-20">
-        <h2 className="text-center text-3xl font-bold md:text-4xl">Veja o ULTRA PRO por dentro</h2>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((n) => (
-            <div key={n} className="flex aspect-video flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed bg-muted text-muted-foreground">
-              <ImageIcon className="h-8 w-8" aria-hidden />
-              <span className="text-sm">Captura de tela {n} em breve</span>
-            </div>
+      <section id="demonstracao" className="mx-auto max-w-7xl px-5 py-20">
+        <SectionTitle title="Veja o ULTRA PRO em ação" />
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {gallery.map((g, i) => (
+            <figure key={g} className="overflow-hidden rounded-xl border bg-card">
+              <div className="flex aspect-video flex-col items-center justify-center gap-1 bg-muted text-muted-foreground">
+                <ImageIcon className="h-6 w-6" aria-hidden /><span className="text-xs">Imagem em breve</span>
+              </div>
+              <figcaption className="flex items-center gap-2 p-2 text-xs font-semibold md:text-sm">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">{i + 1}</span>{g}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>
@@ -140,29 +227,42 @@ function Index() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto max-w-3xl px-5 py-20">
-        <h2 className="text-center text-3xl font-bold md:text-4xl">Perguntas frequentes</h2>
-        <Accordion type="single" collapsible className="mt-10">
+      <section id="faq" className="mx-auto max-w-7xl px-5 py-20">
+        <h2 className="text-3xl font-bold text-secondary-foreground">Perguntas Frequentes</h2>
+        <p className="mt-1 text-muted-foreground">Tire suas dúvidas sobre o ULTRA PRO.</p>
+        <Accordion type="single" collapsible className="mt-8 grid gap-x-8 md:grid-cols-2">
           {faqs.map((f) => (
             <AccordionItem key={f.q} value={f.q}>
-              <AccordionTrigger className="text-left text-base">{f.q}</AccordionTrigger>
+              <AccordionTrigger className="text-left font-semibold">{f.q}</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </section>
 
-      <section id="contato" className="mx-auto max-w-6xl px-5 pb-20">
-        <div className="rounded-3xl bg-brand p-10 text-center text-primary-foreground">
-          <h2 className="text-3xl font-bold">Ficou com alguma dúvida?</h2>
-          <p className="mt-2 opacity-90">Fale com nossa equipe pelo WhatsApp.</p>
-          <Button asChild variant="cta" size="lg" className="mt-6 h-12 rounded-full px-6">
-            <a href={waHref} {...ext(waHref)}><MessageCircle aria-hidden /> Falar no WhatsApp</a>
-          </Button>
+      <section id="contato" className="mx-auto max-w-7xl px-5 pb-20">
+        <div className="relative overflow-hidden rounded-3xl bg-accent p-8 text-accent-foreground md:p-12">
+          <div className="max-w-md">
+            <h2 className="text-3xl font-bold">Pronto para automatizar seu WhatsApp?</h2>
+            <p className="mt-2 opacity-90">Fale com nossa equipe e leve seu negócio para o próximo nível.</p>
+            <Button asChild size="lg" variant="outline" className="mt-6 h-12 rounded-full border-0 px-6 font-bold">
+              <a href={waHref} {...ext(waHref)}><MessageCircle className="text-accent" aria-hidden />Falar no WhatsApp</a>
+            </Button>
+          </div>
+          <img src={robot} alt="" width={816} height={816} loading="lazy" className="absolute -bottom-6 right-4 hidden w-56 md:block" />
         </div>
       </section>
 
-      <footer className="border-t py-8 text-center text-sm text-muted-foreground">© {new Date().getFullYear()} ULTRA PRO</footer>
+      <footer className="bg-deep text-deep-foreground">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-8 md:flex-row">
+          <Logo />
+          <div className="flex flex-wrap justify-center gap-6 text-sm opacity-85">
+            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4" aria-hidden />Sem mensalidade</span>
+            <span className="flex items-center gap-2"><Headphones className="h-4 w-4" aria-hidden />Atendimento pelo WhatsApp</span>
+          </div>
+          <p className="text-sm opacity-70">© {new Date().getFullYear()} ULTRA PRO. Todos os direitos reservados.</p>
+        </div>
+      </footer>
     </main>
   );
 }
